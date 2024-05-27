@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 # Copy application dependency manifest files to the container image
 COPY package*.json ./
 
+# Clear npm cache and set npm registry
+RUN npm cache clean --force
+RUN npm config set registry https://registry.npmjs.org/
+
 # Install production dependencies
 RUN npm install
 
